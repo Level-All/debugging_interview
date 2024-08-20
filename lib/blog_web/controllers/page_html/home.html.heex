@@ -1,0 +1,47 @@
+<nav class="mt-6 px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-4xl">
+    <div class="flex justify-between">
+      <.link
+        navigate={~p"/"}
+        class="font-pt-serif text-2xl text-slate-900 hover:text-purple-600 transition-colors"
+      >
+        Out There
+      </.link>
+      <.link
+        navigate={~p"/"}
+        class="hidden font-inter text-sm text-bold text-slate-900 hover:text-green-500 group transition-colors"
+      >
+        <.icon
+          name="hero-arrow-turn-left-up"
+          class="w-3 h-3 mb-1 text-slate-900 group-hover:text-green-500"
+        /> All Posts
+      </.link>
+    </div>
+  </div>
+</nav>
+<main class="px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-4xl">
+    <.flash_group flash={@flash} />
+    <h1 class="font-inter text-5xl mb-4 font-semibold">Where the Truth Hides in Plain Sight</h1>
+
+    <p class="font-inter text-slate-600 space-y-4 leading-relaxed text-xl">
+      Welcome to “Out There,” the only blog that dares to ask the real questions, like why your toaster might be spying on you or if the moon is really just a giant disco ball. Here, we dive deep into the cosmos of conspiracy, exploring everything from alien breakfast rituals to the secret life of plants. So grab your tinfoil hat, sit back, and remember—just because you’re paranoid doesn’t mean they’re not out to get you!</p>
+    
+
+    <div class="border-t border-slate-200 my-12"></div>
+
+    <h1 class="font-inter text-xl mb-4 font-semibold text-slate-700">Articles</h1>
+
+    <.link :for={post <- @posts} class="group font-inter" navigate={~p"/posts/#{post.id}"}>
+      <div class="-mx-6 p-6 bg-white group hover:bg-slate-50 transition-all duration-300">
+        <h3 class="text-lg font-semibold text-purple-500 group-hover:text-green-400 transition-all duration-300">
+          <%= post.title %>
+        </h3>
+
+        <div class="font-normal mt-2 text-slate-500">
+          <%= String.slice(post.content, 0, 200) %>...
+        </div>
+      </div>
+    </.link>
+  </div>
+</main>
