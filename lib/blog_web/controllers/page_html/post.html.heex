@@ -1,0 +1,49 @@
+<nav class="mt-6 px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-4xl">
+    <div class="flex justify-between">
+      <.link
+        navigate={~p"/"}
+        class="font-pt-serif text-2xl text-slate-900 hover:text-purple-600 transition-colors"
+      >
+        Out There
+      </.link>
+      <.link
+        navigate="/home"
+        class="font-inter text-sm text-bold text-slate-900 hover:text-green-500 group transition-colors"
+      >
+        <.icon
+          name="hero-arrow-turn-left-up"
+          class="w-3 h-3 mb-1 text-slate-900 group-hover:text-green-500"
+        /> All Posts
+      </.link>
+    </div>
+  </div>
+</nav>
+<main class="px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-4xl">
+    <.flash_group flash={@flash} />
+    <h1 class="font-inter text-2xl mb-4 font-semibold"><%= @post.title %></h1>
+    <article class="prose max-w-none prose-slate prose-p:font-inter prose-li:font-inter">
+      <%= raw(Earmark.as_html!(@post.content, compact_output: true)) %>
+    </article>
+
+    <div class="border-t border-gray-100 my-6"></div>
+
+    <h2 class="text-lg mb-4">Comments</h2>
+    <div class="divide-y">
+      <div :for={comment <- @post.comments} class="flex py-6">
+        <div class="flex-0 font-inter text-slate-400"><%= comment.inserted_at %></div>
+        <div class="flex-0 ml-4 mr-2 font-inter text-slate-700">
+          <.comment_score comment={comment} />
+        </div>
+        <div class="flex-1 ml-2 font-inter text-slate-700"><%= comment.content %></div>
+        <div class="flex-0 flex">
+          <.vote_button comment={comment} direction="up" />
+          <.vote_button comment={comment} direction="down" />
+        </div>
+      </div>
+    </div>
+
+    <.comment_form changeset={@changeset} action={~p"/posts/#{@post.id}"} />
+  </div>
+</main>
