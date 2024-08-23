@@ -8,9 +8,9 @@ For our debugging interview, we'll be working in a basic blog application.
 
 * Install Postgres: Please ensure you have a working copy of Postgres 16+ installed. For MacOS, we recommend using https://postgresapp.com
 * Run `asdf install` to install the proper versions of Elixir and Erlang listed in the `.tool-versions` file (or use a dependency manager of your choice)
-* Run `mix deps.get` to install the dependencies
+* Install dependencies: `mix deps.get`
 * Clear any existing databases: `mix ecto.drop && MIX_ENV=test mix ecto.drop`
 * Create the databases: `mix ecto.create && mix ecto.migrate`
 * Seed the database: `mix run priv/repo/seeds.exs`
 
-**NOTE**: Please do not continue further with running application until the interview.
+**NOTE**: Please do not continue further with running the application until the interview.
